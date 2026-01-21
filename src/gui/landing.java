@@ -1,8 +1,7 @@
 package gui;
 import config.config;
-import internal.dashboard;
-import javax.swing.JOptionPane;
 import internal.admin;
+import javax.swing.JOptionPane;
 import internal.client;
 import internal.vet;
 import java.util.List;
@@ -48,7 +47,6 @@ public class landing extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +56,7 @@ public class landing extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/download (1).png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 60, 320, 270);
+        jLabel2.setBounds(0, 70, 320, 270);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -120,12 +118,6 @@ public class landing extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(400, 0, 380, 480);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/download (3).png"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        jLabel6.setPreferredSize(new java.awt.Dimension(30, 30));
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(220, 100, 240, 80);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,7 +167,7 @@ public class landing extends javax.swing.JFrame {
 
             Map<String, Object> user = result.get(0);
             Object idObj = user.get("acc_id");
-            Object typeObj = user.get("type");
+            Object typeObj = user.get("acc_type");
             Object statusObj = user.get("status");
 
             if(idObj == null) {
@@ -195,7 +187,7 @@ public class landing extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Login Success!");
 
             // Open the correct dashboard
-            switch(type.toLowerCase()) {
+            switch(type.toLowerCase().trim()) {
                 case "admin":
                     admin a = new admin();
                     a.setVisible(true);
@@ -204,7 +196,7 @@ public class landing extends javax.swing.JFrame {
                     client c = new client();
                     c.setVisible(true);
                     break;
-                case "veterinarian":
+                case "vet":
                     vet v = new vet();
                     v.setVisible(true);
                     break;
@@ -276,7 +268,6 @@ catch(Exception e) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
